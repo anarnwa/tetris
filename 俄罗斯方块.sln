@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "俄罗斯方块", "俄罗斯方块\俄罗斯方块.jsproj", "{7278F704-0DD7-4017-B479-D61A99DA0EE7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|ARM.ActiveCfg = Debug|ARM
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|ARM.Build.0 = Debug|ARM
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|ARM.Deploy.0 = Debug|ARM
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|x64.ActiveCfg = Debug|x64
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|x64.Build.0 = Debug|x64
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|x64.Deploy.0 = Debug|x64
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|x86.ActiveCfg = Debug|x86
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|x86.Build.0 = Debug|x86
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Debug|x86.Deploy.0 = Debug|x86
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|ARM.ActiveCfg = Release|ARM
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|ARM.Build.0 = Release|ARM
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|ARM.Deploy.0 = Release|ARM
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|x64.ActiveCfg = Release|x64
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|x64.Build.0 = Release|x64
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|x64.Deploy.0 = Release|x64
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|x86.ActiveCfg = Release|x86
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|x86.Build.0 = Release|x86
+		{7278F704-0DD7-4017-B479-D61A99DA0EE7}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {87E0956B-B851-4132-9E12-3835B51308A9}
+	EndGlobalSection
+EndGlobal
