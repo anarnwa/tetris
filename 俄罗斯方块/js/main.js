@@ -1351,7 +1351,7 @@ function timefill() {
     blo = blo.fill()
 }
 function quick() {
-    window.setInterval(timefill, 300)
+    window.setInterval(timefill, 400)
 }
 document.onkeydown = function (event) {
     var e = event || window.event || arguments.callee.caller.arguments[0];
