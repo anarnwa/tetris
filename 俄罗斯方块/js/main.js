@@ -10,6 +10,8 @@ var blo
 var gl = 0
 var pause=0
 var play
+var time = 500
+var timestop
 function drawgl(text) {
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.font = "100px Verdana";
@@ -1371,7 +1373,13 @@ function timefill() {
     blo = blo.fill()
 }
 function quick() {
-    pause = window.setInterval(timefill, 400)
+    pause = window.setInterval(timefill, time)
+    play = pause
+}
+function timequick() {   //加速
+    time -= 10
+    window.clearInterval(pause)
+    pause = window.setInterval(timefill, time)
     play = pause
 }
 document.onkeydown = function (event) {
@@ -1405,10 +1413,13 @@ document.onkeydown = function (event) {
             case 32: {//空格键
                 if (play == pause) {
                     window.clearInterval(pause)
+                    window.clearInterval(timestop)
                     pause=0
                 }
                 else {
                     quick()
+                    time += 10
+                    timestop = window.setInterval(timequick, 30000) //每秒加速一次 
                 }
                 break
             }
@@ -1420,4 +1431,3 @@ document.onkeydown = function (event) {
 }
 newgame()
 window.setInterval(draw, 1)
-//window.setInterval(quick,60000)  //每分钟速度翻倍
