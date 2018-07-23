@@ -8,7 +8,7 @@ for (var i = 0; i < 20; i++) {
 }
 var blo
 var gl = 0
-var pause
+var pause=0
 var play
 function drawgl(text) {
     ctx.clearRect(0, 0, c.width, c.height);
@@ -1412,10 +1412,12 @@ document.onkeydown = function (event) {
                 }
                 break
             }
+            case 13: {//回车键
+                location.reload(true)  
+            }
         }
     }
 }
 newgame()
 window.setInterval(draw, 1)
-quick()  //不变速度
 //window.setInterval(quick,60000)  //每分钟速度翻倍
