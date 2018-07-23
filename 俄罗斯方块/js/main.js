@@ -1,10 +1,27 @@
 ﻿var canvas = document.getElementById("tet");
 var context = canvas.getContext('2d');
+var c = document.getElementById("gl");
+var ctx = c.getContext("2d");
 var a = new Array(20)
 for (var i = 0; i < 20; i++) {
     a[i] = new Array(10)
 }
 var blo
+var gl = 0
+var pause
+var play
+function drawgl(text) {
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.font = "100px Verdana";
+    //创建渐变
+    var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+    gradient.addColorStop("0", "magenta");
+    gradient.addColorStop("0.5", "blue");
+    gradient.addColorStop("1", "red");
+    //把他赋值给fillStyle
+    ctx.fillStyle = gradient;
+    ctx.fillText(text, 10, 100);
+}
 function newgame() {
     for (var i = 0; i < 20; i++) {
         for (var j = 0; j < 10; j++) {
@@ -13,6 +30,7 @@ function newgame() {
     }
     blo = getblock()
     blo.newx()
+    drawgl(gl)
 }
 function getrandomint() {
     return Math.floor(Math.random() * 7)
@@ -1293,7 +1311,9 @@ function isfull() {
             }
         }
         if (j == 10) {
+            gl+=1
             clearline(i)
+            drawgl(gl)
         }
     }
 }
@@ -1351,28 +1371,47 @@ function timefill() {
     blo = blo.fill()
 }
 function quick() {
-    window.setInterval(timefill, 400)
+    pause = window.setInterval(timefill, 400)
+    play = pause
 }
 document.onkeydown = function (event) {
     var e = event || window.event || arguments.callee.caller.arguments[0];
     if (e) {
         switch (e.keyCode) {
             case 37: {//左方向键
-                blo.left()
-            }
+                if (play == pause) {
+                    blo.left()
+                }
                 break
+            }
             case 38: {//上方向键
-                blo.rotate()
-            }
+                if (play == pause) {
+                    blo.rotate()
+                }
                 break
+            }
             case 39: {//右方向键
-                blo.right()
-            }
+                if (play == pause) {
+                    blo.right()
+                }
                 break
+            }
             case 40: {//下方向键
-                timefill()
-            }
+                if (play == pause) {
+                    timefill()
+                }
                 break
+            }
+            case 32: {//空格键
+                if (play == pause) {
+                    window.clearInterval(pause)
+                    pause=0
+                }
+                else {
+                    quick()
+                }
+                break
+            }
         }
     }
 }
