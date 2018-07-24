@@ -12,6 +12,7 @@ var pause=0
 var play
 var time = 500
 var timestop
+var lose
 function drawgl(text) {
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.font = "100px Verdana";
@@ -78,6 +79,9 @@ class T {
             a[2][4] = 1
             a[1][4] = 1
             a[1][5] = 1
+        }
+        else {
+            window.clearInterval(lose)
         }
         this.state = 0
         this.x = 4
@@ -300,6 +304,9 @@ class S {
             a[1][4] = 6
             a[1][3] = 6
         }
+        else {
+            window.clearInterval(lose)
+        }
         this.state = 0
         this.x = 4
         this.y=0
@@ -436,6 +443,9 @@ class Z {
             a[0][4] = 7
             a[1][5] = 7
             a[1][6] = 7
+        }
+        else {
+            window.clearInterval(lose)
         }
         this.state = 0
         this.x = 5
@@ -574,9 +584,12 @@ class O {
             a[0][5] = 3
             a[1][4] = 3
             a[1][5] = 3
-            this.x = 4
-            this.y=0
         }
+        else {
+            window.clearInterval(lose)
+        }
+        this.x = 4
+        this.y = 0
     }
     rotate() {
 
@@ -623,6 +636,9 @@ class J {
             a[0][5] = 4
             a[1][4] = 4
             a[2][4] = 4
+        }
+        else {
+            window.clearInterval(lose)
         }
         this.state = 0
         this.y = 0
@@ -883,6 +899,9 @@ class I {
             if (a[0][i] == 0) {
                 a[0][i] = 2
             }
+            else {
+                window.clearInterval(lose)
+            }
         }
         this.state = 0
         this.y = 0
@@ -1050,6 +1069,9 @@ class L {
             a[0][5] = 5
             a[1][5] = 5
             a[2][5] = 5
+        }
+        else {
+            window.clearInterval(lose)
         }
         this.state = 0
         this.y = 0
@@ -1430,4 +1452,4 @@ document.onkeydown = function (event) {
     }
 }
 newgame()
-window.setInterval(draw, 1)
+lose=window.setInterval(draw, 1)
