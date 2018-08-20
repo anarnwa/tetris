@@ -26,6 +26,7 @@ var play
 var time = 500
 var timestop
 var lose
+var lose2
 var nextblock
 function drawgl(text) {
     ctx.clearRect(0, 0, c.width, c.height);
@@ -162,6 +163,7 @@ class T {
         }
         else {
             window.clearInterval(lose)
+            window.clearInterval(lose2)
         }
         this.state = 0
         this.x = 4
@@ -377,6 +379,7 @@ class S {
         }
         else {
             window.clearInterval(lose)
+            window.clearInterval(lose2)
         }
         this.state = 0
         this.x = 4
@@ -514,6 +517,7 @@ class Z {
         }
         else {
             window.clearInterval(lose)
+            window.clearInterval(lose2)
         }
         this.state = 0
         this.x = 5
@@ -651,6 +655,7 @@ class O {
         }
         else {
             window.clearInterval(lose)
+            window.clearInterval(lose2)
         }
         this.x = 4
         this.y = 0
@@ -703,6 +708,7 @@ class J {
         }
         else {
             window.clearInterval(lose)
+            window.clearInterval(lose2)
         }
         this.state = 0
         this.y = 0
@@ -956,6 +962,7 @@ class I {
             }
             else {
                 window.clearInterval(lose)
+                window.clearInterval(lose2)
             }
         }
         this.state = 0
@@ -1124,6 +1131,7 @@ class L {
         }
         else {
             window.clearInterval(lose)
+            window.clearInterval(lose2)
         }
         this.state = 0
         this.y = 0
@@ -1518,7 +1526,7 @@ document.onkeydown = function (event) {
                 else {
                     quick()
                     time += 10
-                    timestop = window.setInterval(timequick, 30000) //每秒加速一次 
+                    timestop = window.setInterval(timequick, 30000) //每30秒加速一次 
                 }
                 break
             }
@@ -1530,4 +1538,4 @@ document.onkeydown = function (event) {
 }
 newgame()
 lose = window.setInterval(draw, 1)
-window.setInterval(draw2, 1)
+lose2 = window.setInterval(draw2, 1)
