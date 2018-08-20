@@ -2,9 +2,22 @@
 var context = canvas.getContext('2d');
 var c = document.getElementById("gl");
 var ctx = c.getContext("2d");
+var cannext= document.getElementById("next");
+var connext = cannext.getContext("2d");
 var a = new Array(20)
 for (var i = 0; i < 20; i++) {
     a[i] = new Array(10)
+}
+var b = new Array(4)
+for (var i = 0; i < 4; i++) {
+    b[i] = new Array(4)
+}
+function resteb() {
+    for (var i = 0; i < 4; i++) {
+        for (var j = 0; j < 4; j++) {
+            b[i][j] = 0
+        }
+    }
 }
 var blo
 var gl = 0
@@ -13,6 +26,7 @@ var play
 var time = 500
 var timestop
 var lose
+var nextblock
 function drawgl(text) {
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.font = "100px Verdana";
@@ -32,6 +46,7 @@ function newgame() {
         }
     }
     blo = getblock()
+    getnextblock()
     blo.newx()
     drawgl(gl)
 }
@@ -40,7 +55,7 @@ function getrandomint() {
 }
 function getblock() {
     var int = getrandomint()
-    //int = 6
+   // int = 3
     switch (int) {
         case 0: {
             var p = new T()
@@ -72,7 +87,72 @@ function getblock() {
         }
     }
 }
+function getnextblock() {
+    nextblock = getblock()
+    switch (nextblock.name()) {
+        case "T": {
+            b[3][0] = 1
+            b[3][1] = 1
+            b[3][2] = 1
+            b[2][1] = 1
+            break
+        }
+        case "S": {
+            b[3][0] = 6
+            b[3][1] = 6
+            b[2][2] = 6
+            b[2][1] = 6
+            break
+        }
+        case "Z": {
+            b[2][0] = 7
+            b[3][1] = 7
+            b[3][2] = 7
+            b[2][1] = 7
+            break
+        }
+        case "O": {
+            b[2][1] = 3
+            b[1][1] = 3
+            b[1][2] = 3
+            b[2][2] = 3
+            break
+        }
+        case "J": {
+            b[1][0] = 4
+            b[2][0] = 4
+            b[1][1] = 4
+            b[3][0] = 4
+            break
+        }
+        case "I": {
+            b[2][1] = 2
+            b[2][0] = 2
+            b[2][2] = 2
+            b[2][3] = 2
+            break
+        }
+        case "L": {
+            b[1][0] = 5
+            b[2][1] = 5
+            b[3][1] = 5
+            b[1][1] = 5
+            break
+        }
+    }
+}
+function getnewblock() {
+    isfull()
+    var sh = nextblock
+    resteb()
+    getnextblock()   
+    sh.newx()
+    return sh
+}
 class T {
+    name() {
+        return "T"
+    }
     newx() {
         if (a[1][5] == 0 && a[0][4] == 0 && a[1][4] == 0 && a[2][4] == 0) {
             a[0][4] = 1
@@ -231,10 +311,7 @@ class T {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -250,10 +327,7 @@ class T {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -267,10 +341,7 @@ class T {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -286,10 +357,7 @@ class T {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -297,6 +365,9 @@ class T {
     }
 }
 class S {
+    name() {
+        return "S"
+    }
     newx() {
         if (a[0][5] == 0 && a[0][4] == 0 && a[1][4] == 0 && a[1][3] == 0) {
             a[0][4] = 6
@@ -409,10 +480,7 @@ class S {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -426,10 +494,7 @@ class S {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -437,6 +502,9 @@ class S {
     }
 }
 class Z {
+    name() {
+        return "Z"
+    }
     newx() {
         if (a[0][4] == 0 && a[0][5] == 0 && a[1][5] == 0 && a[1][6] == 0) {
             a[0][5] = 7
@@ -549,10 +617,7 @@ class Z {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -566,18 +631,17 @@ class Z {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
-                break
                 break
             }  
         }
     }
 }
 class O {
+    name() {
+        return "O"
+    }
     newx() {
         if (a[0][4] == 0 && a[0][5] == 0 && a[1][4] == 0 && a[1][5] == 0) {
             a[0][4] = 3
@@ -622,14 +686,14 @@ class O {
             return this
         }
         else {
-            isfull()
-            var sh = getblock();
-            sh.newx();
-            return sh
+            return getnewblock()
         }
     }
 }
 class J {
+    name() {
+        return "J"
+    }
     newx() {
         if (a[0][4] == 0 && a[0][5] == 0 && a[1][4] == 0 && a[2][4] == 0) {
             a[0][4] = 4
@@ -828,10 +892,7 @@ class J {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -847,10 +908,7 @@ class J {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -864,10 +922,7 @@ class J {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -883,10 +938,7 @@ class J {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -894,6 +946,9 @@ class J {
     }
 }
 class I {
+    name() {
+        return "I"
+    }
     newx() {
         for (var i = 3; i <= 6; i++) {
             if (a[0][i] == 0) {
@@ -1037,10 +1092,7 @@ class I {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock();
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -1052,10 +1104,7 @@ class I {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock();
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -1063,6 +1112,9 @@ class I {
     }
 }
 class L {
+    name() {
+        return "L"
+    }
     newx() {
         if (a[0][4] == 0 && a[0][5] == 0 && a[1][5] == 0 && a[2][5] == 0) {
             a[0][4] = 5
@@ -1262,10 +1314,7 @@ class L {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -1281,10 +1330,7 @@ class L {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -1298,10 +1344,7 @@ class L {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break
             }
@@ -1317,10 +1360,7 @@ class L {
                     return this
                 }
                 else {
-                    isfull()
-                    var sh = getblock()
-                    sh.newx()
-                    return sh
+                    return getnewblock()
                 }
                 break  
             }
@@ -1391,6 +1431,43 @@ function draw() {
         }
     }
 }
+function draw2() {
+    connext.clearRect(0, 0, cannext.width, cannext.height);
+    connext.fillStyle = "black";  //画布的填充色
+    connext.fillRect(0, 0, cannext.width, cannext.height);
+    for (var i = 0; i < 4; i++) {
+        for (var j = 0; j < 4; j++) {
+            if (b[i][j] == 1) { //T
+                connext.fillStyle = "purple";  //画布的填充色
+                connext.fillRect(j * cannext.height / 4, i * cannext.width / 4, cannext.height / 4, cannext.width / 4);
+            }
+            if (b[i][j] == 2) {   //I
+                connext.fillStyle = "cyan";  //画布的填充色
+                connext.fillRect(j * cannext.height / 4, i * cannext.width / 4, cannext.height / 4, cannext.width / 4);
+            }
+            if (b[i][j] == 3) {   //O
+                connext.fillStyle = "yellow";  //画布的填充色
+                connext.fillRect(j * cannext.height / 4, i * cannext.width / 4, cannext.height / 4, cannext.width / 4);
+            }
+            if (b[i][j] == 4) {   //J
+                connext.fillStyle = "blue";  //画布的填充色
+                connext.fillRect(j * cannext.height / 4, i * cannext.width / 4, cannext.height / 4, cannext.width / 4);
+            }
+            if (b[i][j] == 5) {   //L
+                connext.fillStyle = "orange";  //画布的填充色
+                connext.fillRect(j * cannext.height / 4, i * cannext.width / 4, cannext.height / 4, cannext.width / 4);
+            }
+            if (b[i][j] == 6) {   //S
+                connext.fillStyle = "green";  //画布的填充色
+                connext.fillRect(j * cannext.height / 4, i * cannext.width / 4, cannext.height / 4, cannext.width / 4);
+            }
+            if (b[i][j] == 7) {   //Z
+                connext.fillStyle = "red";  //画布的填充色
+                connext.fillRect(j * cannext.height / 4, i * cannext.width / 4, cannext.height / 4, cannext.width / 4);
+            }
+        }
+    }
+}
 function timefill() {
     blo = blo.fill()
 }
@@ -1452,4 +1529,5 @@ document.onkeydown = function (event) {
     }
 }
 newgame()
-lose=window.setInterval(draw, 1)
+lose = window.setInterval(draw, 1)
+window.setInterval(draw2, 1)
