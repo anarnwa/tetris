@@ -1484,7 +1484,9 @@ function quick() {
     play = pause
 }
 function timequick() {   //加速
-    time -= 10
+    if (time > 0) {
+        time -= 10
+    }
     window.clearInterval(pause)
     pause = window.setInterval(timefill, time)
     play = pause
@@ -1525,7 +1527,6 @@ document.onkeydown = function (event) {
                 }
                 else {
                     quick()
-                    time += 10
                     timestop = window.setInterval(timequick, 30000) //每30秒加速一次 
                 }
                 break
@@ -1533,9 +1534,28 @@ document.onkeydown = function (event) {
             case 13: {//回车键
                 location.reload(true)  
             }
+            case 104: {// 小键盘 8
+                time +=20
+                window.clearInterval(pause)
+                pause = window.setInterval(timefill, time)
+                play = pause
+            }
+            case 98: {// 小键盘 2
+                if (time > 0) {
+                    time -= 10
+                }
+                window.clearInterval(pause)
+                pause = window.setInterval(timefill, time)
+                play = pause
+            }
         }
     }
+}
+function showspeed() {
+    document.getElementById("speed").innerHTML = "当前速度为： 每"+time/1000+"秒下落一格";
+
 }
 newgame()
 lose = window.setInterval(draw, 1)
 lose2 = window.setInterval(draw2, 1)
+window.setInterval(showspeed, 1)
